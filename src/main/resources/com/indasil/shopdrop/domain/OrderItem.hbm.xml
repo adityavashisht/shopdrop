@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.indasil.shopdrop.domain">
+    <class name="OrderItem" table="ORDER_ITEM">
+        <id name="id" column="ID" type="long">
+            <generator class="identity"/>
+        </id>
+        <many-to-one name="item" class="Item" column="ITEM_ID" not-null="true"/>
+        <many-to-one name="order" class="Order" column="ORDER_ID" not-null="true"/>
+    </class>
+</hibernate-mapping>

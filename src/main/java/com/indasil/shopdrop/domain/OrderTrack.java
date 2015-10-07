@@ -8,8 +8,11 @@ import java.util.Date;
 public class OrderTrack {
 
     private Long id;
+    // many to one
     private Order order;
+    // many to one
     private OrderStatus orderStatus;
+
     private Date trackingDate;
     private Boolean current;
 

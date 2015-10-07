@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.indasil.shopdrop.domain">
+    <class name="Order" table="CUSTOMER_ORDER">
+        <id name="id" column="ORDER_ID" type="long">
+            <generator class="identity"/>
+        </id>
+
+        <bag name="orderItems" table="ORDER_ITEM" inverse="true" lazy="true" fetch="select" cascade="save-update">
+            <key>
+                <column name="ORDER_ID" not-null="true"/>
+            </key>
+            <one-to-many class="OrderItem"/>
+        </bag>
+
+        <property name="createDate" type="java.util.Date" column="CREATE_DATE"/>
+
+    </class>
+
+</hibernate-mapping>
+
+
+
+
+
