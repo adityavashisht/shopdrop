@@ -22,7 +22,7 @@ import java.util.Date;
  * Created by vashishta on 10/7/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/spring-config.xml"})
+@ContextConfiguration(locations = {"/service-config.xml"})
 @Transactional
 public class DomainTest {
 
