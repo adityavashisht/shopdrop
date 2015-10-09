@@ -4,9 +4,7 @@ import com.indasil.shopdrop.domain.Item;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import java.util.List;
 
@@ -21,8 +19,9 @@ public class ItemService {
     private SessionFactory sessionFactory;
 
 
-    public List<Item> getAllItems(){
-      return  sessionFactory.getCurrentSession().createQuery("from Item").list();
+    public List<Item> getAllItems() {
+        List<Item> items = sessionFactory.getCurrentSession().createQuery("from Item").list();
+        return items;
     }
 
 }
