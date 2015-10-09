@@ -1,12 +1,12 @@
-package com.indasil.shopdrop.web.controller;
+package com.indasil.shopdrop.web.feature.item;
 
 
 import com.indasil.shopdrop.domain.Item;
 import com.indasil.shopdrop.service.ItemService;
-import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +21,9 @@ public class ItemController {
 
     @Autowired
     private ItemService itemService;
+
+    @Autowired
+    private ItemValidator itemValidator;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
@@ -47,14 +50,37 @@ public class ItemController {
     }
 
 
-    @RequestMapping(method= RequestMethod.POST)
-    public String save(@ModelAttribute("itemForm") ItemForm itemForm) {
+    @RequestMapping(method = RequestMethod.POST)
+    public String save(@ModelAttribute("itemForm") ItemForm itemForm, BindingResult result, Model model) {
 
-        Item item = itemForm.getItem();
+        itemValidator.validate(itemForm, result);
 
-        itemService.save(item);
+        String view = "redirect:item/list";
 
-        return "redirect:item/list";
+        if (!result.hasErrors()) {
+
+            Item item = itemForm.getItem();
+
+            itemService.save(item);
+
+        } else {
+
+            model.addAttribute("itemForm", itemForm);
+
+            view = "item/show";
+        }
+
+        return view;
+
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/delete")
+    public String delete(@RequestParam(value = "id") Long id) {
+
+        itemService.delete(id);
+
+        return "redirect:list";
+    }
+
 
 }

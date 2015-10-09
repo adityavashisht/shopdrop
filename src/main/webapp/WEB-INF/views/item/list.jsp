@@ -17,6 +17,7 @@
                 </td>
                 <td>${product.price}</td>
                 <td>${product.createDate}</td>
+                <td><a href="/app/item/delete?id=${product.id}">Delete</a></td>
             </tr>
 
         </c:forEach>

@@ -12,6 +12,16 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ *
+ * CRUD operations on an item
+ * List all items that are active via the active flag
+
+ * Create a new item
+ * Read an item
+ * Update an existing item
+ * Delete an item
+ *
+ *
  * Created by vashishta on 10/8/15.
  */
 @Component
@@ -23,7 +33,7 @@ public class ItemService {
 
 
     public List<Item> getAllItems() {
-        List<Item> items = sessionFactory.getCurrentSession().createQuery("from Item").list();
+        List<Item> items = sessionFactory.getCurrentSession().createQuery("from Item i where i.active = true").list();
         return items;
     }
 
@@ -48,8 +58,19 @@ public class ItemService {
         else {
             // A transient instance is being sent because there is no id
             item.setCreateDate(new Date());
+            item.setActive(true);
             sessionFactory.getCurrentSession().save(item);
         }
+    }
+
+    public void delete(Long id) {
+        Session session = sessionFactory.getCurrentSession();
+
+        Item itemDB = session.load(Item.class, id);
+        itemDB.setActive(false);
+
+        session.update(itemDB);
+
     }
 
 }

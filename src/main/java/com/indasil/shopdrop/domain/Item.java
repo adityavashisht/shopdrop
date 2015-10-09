@@ -12,6 +12,15 @@ public class Item {
     private String name;
     private Date createDate;
     private BigDecimal price;
+    private Boolean active;
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 
     public Long getId() {
         return id;

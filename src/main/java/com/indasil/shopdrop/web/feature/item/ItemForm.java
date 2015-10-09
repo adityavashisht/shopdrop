@@ -1,4 +1,4 @@
-package com.indasil.shopdrop.web.controller;
+package com.indasil.shopdrop.web.feature.item;
 
 import com.indasil.shopdrop.domain.Item;
 
@@ -8,6 +8,7 @@ import com.indasil.shopdrop.domain.Item;
 public class ItemForm {
 
     private Item item;
+
 
     public Item getItem() {
         return item;
