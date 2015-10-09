@@ -10,6 +10,7 @@
         </id>
         <property name="name" column="NAME" type="string" length="255" not-null="true"/>
         <property name="createDate" column="CREATE_DATE" type="java.util.Date"/>
+        <property name="price" column="PRICE" type="java.math.BigDecimal"/>
     </class>
 </hibernate-mapping>
 
