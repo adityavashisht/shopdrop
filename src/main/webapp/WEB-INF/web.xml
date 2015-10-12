@@ -30,6 +30,18 @@
         <url-pattern>/app/*</url-pattern>
     </servlet-mapping>
 
+    <!-- Enables use of HTTP methods PUT and DELETE -->
+    <filter>
+        <filter-name>httpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+        <async-supported>true</async-supported>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>httpMethodFilter</filter-name>
+        <servlet-name>shopdrop</servlet-name>
+    </filter-mapping>
+
     <!-- Handles REST clients invocation from mobile or other devices
 
     <servlet>

@@ -48,7 +48,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="<spring:url value="/app/restItem/show"/>">Ajax Item</a></li>
                 <li class="dropdown">
                     <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">Items <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -60,6 +60,8 @@
                         <li><a href="#">Separated link</a></li>
                         <li><a href="#">One more separated link</a></li>
                     </ul>
+
+
                 </li>
 
 
