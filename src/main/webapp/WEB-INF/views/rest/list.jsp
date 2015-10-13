@@ -16,15 +16,17 @@
         </thead>
         <tbody id="itemBody">
 
+
         </tbody>
     </table>
 
     <h2>Item</h2>
 
-    <form id="itemForm" name="itemForm">
+    <form id="itemForm" name="itemForm" class="form-horizontal">
         <input type="hidden" id="itemId" name="id">
         <input type="text" name="name" id="itemName" class="form-control" value=""/>
         <input type="text" name="price" id="itemPrice" class="form-control" value=""/>
+        <input type="text" name="createDate" id="itemDate" class="form-control" value=""/>
 
 
         <button type="button" id="clickMe" class="btn btn-success">Save Item</button>
@@ -91,26 +93,46 @@
         $(".itemSelect").click(function(event) {
             event.preventDefault();
 
-            var item = $(this).attr('item');
+            var item = $(this).attr('itemId');
 
-            var URL = '<c:url value="/app/restItem/"/>' + item;
 
-            $.ajax({
-                method: "GET",
-                url: URL,
-                success: function (data) {
-                    var id = data.id;
-                    var name = data.name;
-                    var price = data.price;
+            var id = item;
+            var name = $(this).text();
 
-                    $("#itemId").val(id);
-                    $("#itemName").val(name);
-                    $("#itemPrice").val(price);
+            var nextTd = $(this).parent().next();
 
-                },
-                error : function(data) {
-                }
-            });
+            var price = nextTd.text();
+
+            var create = nextTd.next().text();
+
+
+
+            $("#itemId").val(id);
+            $("#itemName").val(name);
+            $("#itemPrice").val(price);
+            $("#itemDate").val(create);
+
+            <%--var URL = '<c:url value="/app/restItem/"/>' + item;--%>
+
+            <%--$.ajax({--%>
+                <%--method: "GET",--%>
+                <%--url: URL,--%>
+                <%--success: function (data) {--%>
+                    <%--var id = data.id;--%>
+                    <%--var name = data.name;--%>
+                    <%--var price = data.price;--%>
+                    <%--var create = data.createDate;--%>
+
+                    <%--$("#itemId").val(id);--%>
+                    <%--$("#itemName").val(name);--%>
+                    <%--$("#itemPrice").val(price);--%>
+                    <%--$("#itemDate").val(create);--%>
+
+
+                <%--},--%>
+                <%--error : function(data) {--%>
+                <%--}--%>
+            <%--});--%>
 
 
         });
@@ -127,15 +149,19 @@
             success: function (data) {
 
                 $("#itemBody").empty();
-                var itemRows = '';
-                $.each(data, function (i, item) {
 
-                    var row = '<tr><td><a class="itemSelect" href="#!" item="'+ item.id + '">' + item.name + '</a></td>';
-                    row += '<td>' + item.price + '</td>';
-                    row += '<td>' + item.createDate + '</td></tr>';
+                var itemRows = '';
+
+                $.each(data, function (i, value) {
+
+                    var row = '<tr><td><a class="itemSelect" href="#!" itemId="'+ value.id + '">' + value.name + '</a></td>';
+                    row += '<td>' + value.price + '</td>';
+
+                    row += '<td>' + value.createDate + '</td></tr>';
                     itemRows += row;
 
                 });
+
                 $("#itemBody").append(itemRows);
 
                 itemSelector();

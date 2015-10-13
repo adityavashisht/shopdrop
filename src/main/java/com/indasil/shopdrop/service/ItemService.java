@@ -33,13 +33,12 @@ public class ItemService {
 
 
     public List<Item> getAllItems() {
-        List<Item> items = sessionFactory.getCurrentSession().createQuery("from Item i where i.active = true").list();
+        List<Item> items = sessionFactory.getCurrentSession().createQuery("select new Item(i.id, i.name, i.price, i.createDate) from Item i where i.active = true").list();
         return items;
     }
 
     public Item getItemById(Long id) {
         Item item = sessionFactory.getCurrentSession().load(Item.class, id);
-        Hibernate.initialize(item);
         return item;
     }
 

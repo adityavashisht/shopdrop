@@ -14,6 +14,19 @@ public class Item {
     private BigDecimal price;
     private Boolean active;
 
+    public Item() {
+
+    }
+
+    public Item(Long id, String name, BigDecimal price, Date createDate) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.createDate = createDate;
+
+    }
+
+
     public Boolean getActive() {
         return active;
     }

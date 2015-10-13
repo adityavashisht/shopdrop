@@ -54,12 +54,13 @@ public class RestItemController {
 
         Item item = itemService.getItemById(id);
 
-        Item returnItem = new Item();
-        returnItem.setId(item.getId());
-        returnItem.setName(item.getName());
-        returnItem.setPrice(item.getPrice());
+//        Item returnItem = new Item();
+//        returnItem.setId(item.getId());
+//        returnItem.setName(item.getName());
+//        returnItem.setPrice(item.getPrice());
+//        returnItem.setCreateDate(item.getCreateDate());
 
-        return new ResponseEntity<>(returnItem, HttpStatus.OK);
+        return new ResponseEntity<>(item, HttpStatus.OK);
     }
 
 }
